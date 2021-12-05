@@ -244,6 +244,16 @@ img {
     border-radius: 2px;
   }
 
+  .contrib{
+    color: rgb(24, 10, 10);
+    font-style: italic;
+    
+    text-align: center;
+    font-size: 20px; 
+    font-family: cursive;   
+    
+
+  }
   
   
   
