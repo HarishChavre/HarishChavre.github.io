@@ -1,76 +1,85 @@
 import { motion } from "framer-motion";
 import { Button } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 
 export default function Hero() {
+  /* --------------------
+     COLOR SYSTEM
+  -------------------- */
   const colors = {
-    mainAccent: "#EF5B5B",
-    secondaryAccent: "#00A896",
-    darkBg: "#1D2B3A",
-    lightText: "#f5f5f5",
+    primary: "#7952B3",   // Soft Violet
+    secondary: "#FD7E14", // Burnt Orange
+    bg: "#FFFFFF",
+    text: "#212529",
+    muted: "#495057",
+    border: "#E9ECEF",
   };
 
+  const isMobile = useMediaQuery("(max-width:768px)");
+
+  /* --------------------
+     STYLES
+  -------------------- */
   const styles = {
     section: {
-      height: "100vh",
+      minHeight: "100vh",
       display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
       alignItems: "center",
-      background: colors.darkBg,
-      color: colors.lightText,
+      justifyContent: "center",
+      background: colors.bg,
+      padding: isMobile ? "120px 20px 60px" : "140px 40px 80px",
+      fontFamily: "'Inter', system-ui, sans-serif",
+    },
+    container: {
+      maxWidth: "900px",
+      width: "100%",
       textAlign: "center",
-      padding: "0 20px",
-      fontFamily: "'Montserrat', sans-serif",
     },
     title: {
-      fontSize: "4rem",
-      fontWeight: 900,
-      letterSpacing: "2px",
+      fontSize: isMobile ? "2.4rem" : "3.2rem",
+      fontWeight: 700,
+      color: colors.text,
+      lineHeight: 1.2,
       marginBottom: "20px",
-      textShadow: "0 0 8px rgba(239, 91, 91, 0.2)",
+    },
+    name: {
+      color: colors.primary,
     },
     subtitle: {
-      fontSize: "1.25rem",
-      maxWidth: "700px",
-      lineHeight: "1.7",
-      color: "#A1B0C4",
-      marginBottom: "50px",
+      fontSize: isMobile ? "1rem" : "1.15rem",
+      lineHeight: 1.7,
+      color: colors.muted,
+      maxWidth: "720px",
+      margin: "0 auto 40px",
     },
     highlight: {
-      color: colors.mainAccent,
+      color: colors.primary,
+      fontWeight: 600,
     },
-    // Primary CTA Button Style (View My Work)
+    btnGroup: {
+      display: "flex",
+      gap: "16px",
+      justifyContent: "center",
+      flexWrap: "wrap",
+    },
     primaryBtn: {
-      background: `linear-gradient(45deg, ${colors.secondaryAccent} 30%, #00C8B6 90%)`,
-      color: colors.darkBg,
-      textTransform: "uppercase",
-      fontWeight: 700,
-      fontSize: "1.05rem",
-      padding: "14px 40px",
-      borderRadius: "50px",
-      boxShadow: "0 4px 12px rgba(0, 168, 150, 0.3)",
-      letterSpacing: "1px",
-      transition: "all 0.4s ease",
+      backgroundColor: colors.primary,
+      color: "#ffffff",
+      fontWeight: 600,
+      padding: "12px 28px",
+      borderRadius: "8px",
+      textTransform: "none",
+      boxShadow: "none",
     },
-    // Secondary CTA Button Style (View My Blogs)
     secondaryBtn: {
-        background: "transparent",
-        color: colors.mainAccent, // Use main accent for visibility
-        border: `2px solid ${colors.mainAccent}`,
-        textTransform: "uppercase",
-        fontWeight: 700,
-        fontSize: "1.05rem",
-        padding: "12px 30px",
-        borderRadius: "50px",
-        letterSpacing: "1px",
-        transition: "all 0.4s ease",
+      backgroundColor: "transparent",
+      color: colors.primary,
+      border: `1.5px solid ${colors.primary}`,
+      fontWeight: 600,
+      padding: "11px 26px",
+      borderRadius: "8px",
+      textTransform: "none",
     },
-    btnContainer: {
-        display: "flex",
-        gap: "20px",
-        marginTop: "40px",
-        justifyContent: "center",
-    }
   };
 
   return (
@@ -79,56 +88,64 @@ export default function Hero() {
       style={styles.section}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1.5 }}
+      transition={{ duration: 0.6 }}
     >
-      <motion.h1
-        style={styles.title}
-        initial={{ y: 50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        Hi, I’m <span style={styles.highlight}>Harish Chavre</span>
-      </motion.h1>
+      <div style={styles.container}>
+        {/* TITLE */}
+        <motion.h1
+          style={styles.title}
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          Hi, I’m{" "}
+          <span style={styles.name}>Harish Chavre</span>
+        </motion.h1>
 
-      <motion.p
-        style={styles.subtitle}
-        initial={{ y: 50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-      >
-        Full Stack Developer skilled in React, Node.js, and MongoDB. I build scalable web applications and contribute
-        to open-source projects in the Debian ecosystem. Google Summer of Code 2025 participant and passionate about
-        creating meaningful digital experiences.
-      </motion.p>
+        {/* SUBTITLE */}
+        <motion.p
+          style={styles.subtitle}
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          I’m a <span style={styles.highlight}>Full-Stack Developer</span> who
+          enjoys building clean, reliable web applications using React and
+          Node.js. I actively contribute to{" "}
+          <span style={styles.highlight}>open-source</span>, work within the
+          Debian ecosystem, and was selected as a{" "}
+          <span style={styles.highlight}>Google Summer of Code 2025</span>{" "}
+          contributor.
+        </motion.p>
 
-      <div style={styles.btnContainer}>
-        {/* Primary CTA: View My Work */}
+        {/* BUTTONS */}
         <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6, type: "spring", stiffness: 150 }}
-            whileHover={{ scale: 1.08, boxShadow: "0 6px 20px rgba(0, 168, 150, 0.5)" }}
-            whileTap={{ scale: 0.95 }}
+          style={styles.btnGroup}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.25 }}
         >
-          <a href="#projects" style={{ textDecoration: "none" }}>
-            <Button style={styles.primaryBtn}>View My Work</Button>
-          </a>
-        </motion.div>
+          <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }}>
+            <a href="#projects" style={{ textDecoration: "none" }}>
+              <Button style={styles.primaryBtn}>
+                View Projects
+              </Button>
+            </a>
+          </motion.div>
 
-        {/* Secondary CTA: View My Blogs (Placeholder) */}
-        <motion.a
-            href="https://harishchavre.github.io/harish-tech-diaries/" 
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ textDecoration: "none" }}
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.7, type: "spring", stiffness: 150 }}
-            whileHover={{ scale: 1.08, backgroundColor: "rgba(239, 91, 91, 0.1)", boxShadow: "0 6px 20px rgba(239, 91, 91, 0.2)" }}
-            whileTap={{ scale: 0.95 }}
-        >
-          <Button style={styles.secondaryBtn}>View My Blogs</Button>
-        </motion.a>
+          <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }}>
+            <a
+              href="https://harishchavre.github.io/harish-tech-diaries/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+            >
+              <Button style={styles.secondaryBtn}>
+                Read My Blog
+              </Button>
+            </a>
+          </motion.div>
+        </motion.div>
       </div>
     </motion.section>
   );

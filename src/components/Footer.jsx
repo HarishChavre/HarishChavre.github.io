@@ -1,34 +1,52 @@
 import { motion } from "framer-motion";
 import { SiGithub, SiLinkedin, SiGitlab } from "react-icons/si";
 
-const colors = {
-  mainAccent: "#EF5B5B",
-  darkBg: "#1D2B3A",
-  lightText: "#E5E9F0",
-  grayText: "#A1B0C4",
-};
-
 export default function Footer() {
+  /* --------------------
+     COLOR SYSTEM
+  -------------------- */
+  const colors = {
+    primary: "#7952B3",     // Soft Violet
+    secondary: "#FD7E14",   // Burnt Orange
+    bg: "#FFFFFF",
+    text: "#212529",
+    muted: "#6C757D",
+    border: "#E9ECEF",
+  };
+
+  /* --------------------
+     STYLES
+  -------------------- */
   const styles = {
     footer: {
-      backgroundColor: colors.darkBg,
-      color: colors.grayText,
+      backgroundColor: colors.bg,
+      borderTop: `1px solid ${colors.border}`,
       padding: "40px 20px",
-      textAlign: "center",
-      fontFamily: "'Montserrat', sans-serif",
-      borderTop: `1px solid rgba(255, 255, 255, 0.05)`,
+      fontFamily: "'Inter', system-ui, sans-serif",
     },
-    socialIcons: {
+    container: {
+      maxWidth: "900px",
+      margin: "0 auto",
+      textAlign: "center",
+    },
+    socials: {
       display: "flex",
       justifyContent: "center",
-      gap: "28px",
-      marginBottom: "20px",
-      fontSize: "1.8rem",
+      gap: "24px",
+      fontSize: "1.4rem",
+      marginBottom: "16px",
+    },
+    link: {
+      color: colors.muted,
+      transition: "color 0.2s ease, transform 0.2s ease",
     },
     text: {
-      fontSize: "0.95rem",
-      color: colors.grayText,
-      marginTop: "10px",
+      fontSize: "0.85rem",
+      color: colors.muted,
+    },
+    name: {
+      color: colors.primary,
+      fontWeight: 500,
     },
   };
 
@@ -43,26 +61,38 @@ export default function Footer() {
       style={styles.footer}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
     >
-      <div style={styles.socialIcons}>
-        {socials.map((s, i) => (
-          <motion.a
-            key={i}
-            href={s.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: colors.grayText, transition: "color 0.3s ease" }}
-            whileHover={{ scale: 1.2 }}
-            onMouseEnter={(e) => (e.target.style.color = colors.mainAccent)}
-            onMouseLeave={(e) => (e.target.style.color = colors.grayText)}
-          >
-            {s.icon}
-          </motion.a>
-        ))}
+      <div style={styles.container}>
+        {/* SOCIAL LINKS */}
+        <div style={styles.socials}>
+          {socials.map((s, i) => (
+            <motion.a
+              key={i}
+              href={s.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={styles.link}
+              whileHover={{ y: -2 }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.color = colors.primary)
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.color = colors.muted)
+              }
+            >
+              {s.icon}
+            </motion.a>
+          ))}
+        </div>
+
+        {/* COPYRIGHT */}
+        <p style={styles.text}>
+          © {new Date().getFullYear()}{" "}
+          <span style={styles.name}>Harish Chavre</span>. Built with React.
+        </p>
       </div>
-      <p style={styles.text}>© {new Date().getFullYear()} Harish Chavre. Built with React and style.</p>
     </motion.footer>
   );
 }

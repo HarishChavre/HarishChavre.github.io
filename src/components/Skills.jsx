@@ -1,126 +1,155 @@
 import { motion } from "framer-motion";
-import React from "react";
-import { 
-  SiReact, SiNodedotjs, SiExpress, SiMongodb, SiNextdotjs, 
-  SiDocker, SiFramer, SiMui, SiGit, SiJavascript, SiHtml5, 
-  SiCss3, SiLinux, SiMysql 
+import {
+  SiReact,
+  SiNodedotjs,
+  SiExpress,
+  SiMongodb,
+  SiNextdotjs,
+  SiDocker,
+  SiFramer,
+  SiMui,
+  SiGit,
+  SiJavascript,
+  SiHtml5,
+  SiCss3,
+  SiLinux,
+  SiMysql,
 } from "react-icons/si";
 
-const colors = {
-  mainAccent: "#EF5B5B",
-  secondaryAccent: "#00A896",
-  darkBg: "#1D2B3A",
-  cardBg: "#253447",
-  lightText: "#E5E9F0",
-  grayText: "#A1B0C4",
-};
-
 export default function Skills() {
+  /* --------------------
+     COLOR SYSTEM
+  -------------------- */
+  const colors = {
+    primary: "#7952B3",     // Soft Violet
+    secondary: "#FD7E14",   // Burnt Orange
+    bg: "#FFFFFF",
+    cardBg: "#F8F9FA",
+    text: "#212529",
+    muted: "#6C757D",
+    border: "#E9ECEF",
+  };
+
+  /* --------------------
+     STYLES
+  -------------------- */
   const styles = {
     section: {
-      padding: "80px 20px",
-      backgroundColor: colors.darkBg,
-      color: colors.lightText,
-      fontFamily: "'Montserrat', sans-serif",
-      textAlign: "center",
+      padding: "100px 20px",
+      backgroundColor: colors.bg,
+      fontFamily: "'Inter', system-ui, sans-serif",
     },
-    title: {
-      fontSize: "2.8rem",
+    heading: {
+      fontSize: "2.4rem",
       fontWeight: 700,
-      marginBottom: "40px",
-      color: colors.mainAccent,
+      textAlign: "center",
+      color: colors.text,
+      marginBottom: "16px",
+    },
+    subtitle: {
+      textAlign: "center",
+      maxWidth: "720px",
+      margin: "0 auto 60px",
+      color: colors.muted,
+      fontSize: "1.05rem",
+      lineHeight: 1.6,
     },
     grid: {
-      display: "flex",
-      flexWrap: "wrap",
-      justifyContent: "center",
-      gap: "25px",
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
+      gap: "20px",
       maxWidth: "1000px",
       margin: "0 auto",
     },
-    badge: {
+    card: {
+      backgroundColor: colors.cardBg,
+      border: `1px solid ${colors.border}`,
+      borderRadius: "14px",
+      padding: "22px 16px",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      width: "100px",
-      height: "100px",
-      backgroundColor: colors.cardBg,
-      color: colors.lightText,
-      borderRadius: "16px",
-      fontWeight: 600,
-      fontSize: "0.95rem",
-      boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
-      cursor: "pointer",
-      border: `1px solid ${colors.cardBg}`,
-      transition: "all 0.3s ease",
+      cursor: "default",
     },
     icon: {
-      fontSize: "2.2rem",
-      marginBottom: "8px",
-      color: colors.mainAccent,
+      fontSize: "2rem",
+      color: colors.primary,
+      marginBottom: "10px",
+    },
+    label: {
+      fontSize: "0.9rem",
+      fontWeight: 500,
+      color: colors.text,
+      textAlign: "center",
     },
   };
 
+  /* --------------------
+     SKILLS DATA
+  -------------------- */
   const skills = [
-    { name: "React.js", icon: <SiReact style={styles.icon} /> },
-    { name: "Next.js", icon: <SiNextdotjs style={styles.icon} /> },
-    { name: "Node.js", icon: <SiNodedotjs style={styles.icon} /> },
-    { name: "Express.js", icon: <SiExpress style={styles.icon} /> },
-    { name: "MongoDB", icon: <SiMongodb style={styles.icon} /> },
-    { name: "MySQL", icon: <SiMysql style={styles.icon} /> },
-    { name: "Docker", icon: <SiDocker style={styles.icon} /> },
-    { name: "MUI", icon: <SiMui style={styles.icon} /> },
-    { name: "Framer Motion", icon: <SiFramer style={styles.icon} /> },
-    { name: "Git", icon: <SiGit style={styles.icon} /> },
-    { name: "JavaScript", icon: <SiJavascript style={styles.icon} /> },
-    { name: "HTML5", icon: <SiHtml5 style={styles.icon} /> },
-    { name: "CSS3", icon: <SiCss3 style={styles.icon} /> },
-        { name: "Linux", icon: <SiLinux style={styles.icon} /> },
+    { name: "React", icon: SiReact },
+    { name: "Next.js", icon: SiNextdotjs },
+    { name: "Node.js", icon: SiNodedotjs },
+    { name: "Express", icon: SiExpress },
+    { name: "MongoDB", icon: SiMongodb },
+    { name: "MySQL", icon: SiMysql },
+    { name: "Docker", icon: SiDocker },
+    { name: "Linux", icon: SiLinux },
+    { name: "Git", icon: SiGit },
+    { name: "MUI", icon: SiMui },
+    { name: "Framer Motion", icon: SiFramer },
+    { name: "JavaScript", icon: SiJavascript },
+    { name: "HTML5", icon: SiHtml5 },
+    { name: "CSS3", icon: SiCss3 },
   ];
 
   return (
-    <motion.section
-      id="skills"
-      style={styles.section}
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-    >
+    <section id="skills" style={styles.section}>
+      {/* TITLE */}
       <motion.h2
-        style={styles.title}
-        initial={{ y: 40, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6 }}
+        style={styles.heading}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
       >
         Technical Skills
       </motion.h2>
 
+      {/* SUBTITLE */}
+      <motion.p
+        style={styles.subtitle}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        viewport={{ once: true }}
+      >
+        Tools and technologies I’ve used to build production-ready applications,
+        contribute to open source, and work comfortably in Linux environments.
+      </motion.p>
+
+      {/* GRID */}
       <div style={styles.grid}>
-        {skills.map((skill, i) => (
-          <motion.div
-            key={i}
-            style={styles.badge}
-            whileHover={{ 
-              scale: 1.1, 
-              boxShadow: `0 0 18px ${colors.secondaryAccent}`,
-              color: colors.secondaryAccent,
-            }}
-            transition={{ duration: 0.3 }}
-          >
-            {/* Clone icon and set color on hover to match the shadow */}
-            {React.cloneElement(skill.icon, { 
-              style: { 
-                ...styles.icon, 
-                color: colors.mainAccent,
-                transition: "color 0.3s ease",
-              } 
-            })}
-            <span>{skill.name}</span>
-          </motion.div>
-        ))}
+        {skills.map((skill, index) => {
+          const Icon = skill.icon;
+          return (
+            <motion.div
+              key={skill.name}
+              style={styles.card}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.04 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -6 }}
+            >
+              <Icon style={styles.icon} />
+              <span style={styles.label}>{skill.name}</span>
+            </motion.div>
+          );
+        })}
       </div>
-    </motion.section>
+    </section>
   );
 }
